@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 '''A func'''
 
+
 def pascal_triangle(n):
-    '''Returns a list of lists of integers representing the Pascal triangle of n'''
+    '''Returns a list of lists of integers representing
+        the Pascal triangle of n
+    '''
     if n <= 0:
         return []
 
