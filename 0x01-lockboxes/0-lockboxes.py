@@ -3,17 +3,24 @@
 
 
 def canUnlockAll(boxes):
-    '''func to unlock boxes'''
+    # Number of boxes
     n = len(boxes)
-    unlocked = [False] * n  # Track unlocked boxes
-    unlocked[0] = True  # The first box is always unlocked
-    queue = [0]  # Start with the first box
-
+    
+    # A set to keep track of visited boxes
+    visited = set()
+    
+    # A queue to keep track of keys to check
+    queue = [0]
+    
+    # Perform BFS
     while queue:
-        box_index = queue.pop(0)
-        for key in boxes[box_index]:
-            if key < n and not unlocked[key]:
-                unlocked[key] = True
-                queue.append(key)
-
-    return all(unlocked)
+        current = queue.pop(0)
+        
+        if current not in visited:
+            visited.add(current)
+            for key in boxes[current]:
+                if key < n and key not in visited:
+                    queue.append(key)
+    
+    # Check if all boxes are visited
+    return len(visited) == n
