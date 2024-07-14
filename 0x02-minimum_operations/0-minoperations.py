@@ -3,6 +3,7 @@
 to result in exactly n H characters in the file.
 '''
 
+
 def minOperations(n):
     '''Returns an integer'''
     if n <= 1:
@@ -15,5 +16,5 @@ def minOperations(n):
             operations += factor
             n //= factor
         factor += 1
-    
+
     return operations
