@@ -11,15 +11,12 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Initialize dp array with inf and set dp[0] to 0
-    dp = [0] + [float('inf')] * total
-
-    # Sort coins in descending order to consider larger coins first
-    coins.sort(reverse=True)
+    coins = sorted(coins, reverse=True)
+    dp = [float('inf')] * (total + 1)
+    dp[0] = 0
 
     for coin in coins:
         for i in range(coin, total + 1):
-            if dp[i - coin] != float('inf'):
-                dp[i] = min(dp[i], dp[i - coin] + 1)
+            dp[i] = min(dp[i], dp[i - coin] + 1)
 
     return dp[total] if dp[total] != float('inf') else -1
